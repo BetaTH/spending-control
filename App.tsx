@@ -2,7 +2,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { View } from 'react-native'
 import Home from './src/screens/Home'
-import UseTheme from './src/theme/theme'
+import { colors } from './src/theme'
 import {
   useFonts,
   Roboto_400Regular,
@@ -14,8 +14,6 @@ export default function App() {
     Roboto_400Regular,
     Roboto_700Bold,
   })
-
-  const { colors } = UseTheme()
 
   return (
     <View

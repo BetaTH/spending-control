@@ -19,7 +19,7 @@ function SafeArea({ style, children }: Props) {
         {
           flex: 1,
           paddingTop:
-            Number(style.paddingTop) +
+            Number(style.paddingTop || 0) +
             (Platform.OS === 'android' ? StatusBar.currentHeight : 0),
         },
       ]}
