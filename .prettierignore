@@ -1,0 +1,5 @@
+node_modules
+build
+.gitlab-ci.yml
+src/emails
+.next
