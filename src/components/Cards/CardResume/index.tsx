@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
-import { colors, typography } from '../../../theme'
+import { View, Text } from 'react-native'
 import ArrowUp from '../../../assets/icons/arrow-circle-up-regular.svg'
 import ArrowDown from '../../../assets/icons/arrow-circle-down-regular.svg'
 
@@ -7,45 +6,24 @@ type CardResumeProps = {
   isDeposit: boolean
 }
 
-const style = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    width: 280,
-    paddingHorizontal: 32,
-    paddingVertical: 24,
-    borderRadius: 6,
-    backgroundColor: colors.base.shapeTerciaria,
-    gap: 12,
-  },
-  row1: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  row2: { width: '100%', flexDirection: 'column', gap: 2 },
-  textType: { color: colors.base.textoBase, ...typography.regular.md },
-  textValue: { color: colors.base.titulos, ...typography.bold['2xl'] },
-  textDate: {
-    color: colors.base.placeholder,
-    ...typography.regular.sm,
-  },
-})
-
 function CardResume({ isDeposit }: CardResumeProps) {
   return (
     <View
-      style={[
-        style.container,
-        { marginLeft: isDeposit ? 24 : 0, marginRight: isDeposit ? 0 : 24 },
-      ]}
+      className={`flex-col w-[280] px-8 py-6 bg-base-shapeTerciaria rounded-[6px] space-y-3 ${
+        isDeposit ? 'ml-6' : 'mr-6'
+      }`}
     >
-      <View style={style.row1}>
-        <Text style={style.textType}>{isDeposit ? 'Entrada' : 'Sáida'}</Text>
+      <View className="w-full flex-row justify-between">
+        <Text className="text-base-textoBase text-style-regular-md">
+          {isDeposit ? 'Entrada' : 'Sáida'}
+        </Text>
         {isDeposit ? <ArrowUp /> : <ArrowDown />}
       </View>
-      <View style={style.row2}>
-        <Text style={style.textValue}>R$ 17.400,00</Text>
-        <Text style={style.textDate}>
+      <View className="w-full flex-col space-y-[2]">
+        <Text className="text-base-titulos text-style-bold-2xl">
+          R$ 17.400,00
+        </Text>
+        <Text className="text-base-placeholder text-style-regular-sm">
           Última {isDeposit ? 'entrada' : 'sáida'} em 13 de abril
         </Text>
       </View>
