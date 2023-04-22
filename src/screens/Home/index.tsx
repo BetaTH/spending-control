@@ -1,35 +1,104 @@
 import SafeArea from '../../components/SafeArea'
 import { ScrollView, View } from 'react-native'
 import CardResume from '../../components/Cards/CardResume'
+import CardTransactions from '../../components/Cards/CardTransactions'
 import Button from '../../components/Button'
+import { useState } from 'react'
+import BottomSheetCreateTransaction from '../../components/Modal/BottomSheetCreateTransaction'
 
 function Home() {
+  const [showModalToAdd, setShowModalToAdd] = useState(false)
   return (
-    <SafeArea style={{ padding: 0, flex: 1 }}>
-      <View className="h-[200]"></View>
-      <View className="w-full flex-1 bg-base-shapePrincipal">
-        <View className="top-[-66px]">
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <CardResume isDeposit />
-            <View style={{ width: 16 }} />
-            <CardResume isDeposit={false} />
-          </ScrollView>
+    <SafeArea style={{ padding: 0, flex: 1, position: 'relative' }}>
+      <View className="flex-1">
+        <View className="flex-1">
+          <View className="h-[134]" />
+          <View className="">
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View className="flex-row px-6" style={{ gap: 16 }}>
+                <CardResume isDeposit />
+                <CardResume isDeposit={false} />
+              </View>
+            </ScrollView>
+          </View>
+          <View className="flex-1">
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View className="pb-6 mb-[108]">
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    date: '10/04/2022',
+                    type: 0,
+                    value: 59,
+                  }}
+                />
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    type: 1,
+                    value: 59,
+                  }}
+                />
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    type: 1,
+                    value: 59,
+                  }}
+                />
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    type: 1,
+                    value: 59,
+                  }}
+                />
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    type: 1,
+                    value: 59,
+                  }}
+                />
+                <CardTransactions
+                  isLast={false}
+                  transaction={{
+                    description: 'Hamburguer',
+                    category: 'Alimentação',
+                    type: 1,
+                    value: 59,
+                  }}
+                />
+              </View>
+            </ScrollView>
+          </View>
         </View>
-        <ScrollView className="p-6 top-[-66px] space-y-6">
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-          <Button text="Cadastrar" />
-        </ScrollView>
+        <View className="flex-1 w-full h-full mt-[200] bg-base-shapePrincipal absolute -z-50" />
+        <Button
+          size="large"
+          iconName="plus"
+          className="w-[60] h-[60] absolute bottom-6 right-6 rounded-full p-0 items-center justify-center border-base-white shadow-2xl"
+          style={{
+            shadowColor: '#171717',
+            elevation: 10,
+          }}
+          onPress={() => setShowModalToAdd(true)}
+        />
       </View>
+      <BottomSheetCreateTransaction
+        showModal={showModalToAdd}
+        onClose={() => setShowModalToAdd(false)}
+      />
     </SafeArea>
   )
 }
