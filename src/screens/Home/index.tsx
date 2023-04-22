@@ -84,17 +84,17 @@ function Home() {
           </View>
         </View>
         <View className="flex-1 w-full h-full mt-[200] bg-base-shapePrincipal absolute -z-50" />
-        <Button
-          size="large"
-          iconName="plus"
-          className="w-[60] h-[60] absolute bottom-6 right-6 rounded-full p-0 items-center justify-center border-base-white shadow-2xl"
-          style={{
-            shadowColor: '#171717',
-            elevation: 10,
-          }}
-          onPress={() => setShowModalToAdd(true)}
-        />
       </View>
+      <Button
+        size="large"
+        iconName="plus"
+        className="w-[60] h-[60] absolute bottom-6 right-6 rounded-full p-0 items-center justify-center border-base-white shadow-2xl"
+        style={{
+          shadowColor: '#171717',
+          elevation: 10,
+        }}
+        onPress={() => setShowModalToAdd(true)}
+      />
       <BottomSheetCreateTransaction
         showModal={showModalToAdd}
         onClose={() => setShowModalToAdd(false)}

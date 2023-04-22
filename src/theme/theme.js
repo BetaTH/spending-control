@@ -7,6 +7,7 @@ const colors = {
     red: '#F75A68',
   },
   base: {
+    backgroundOpacity: '#121214B3',
     background: '#121214',
     shapePrincipal: '#202024',
     shapeSecundaria: '#29292E',

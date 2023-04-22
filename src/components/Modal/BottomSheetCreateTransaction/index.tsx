@@ -1,39 +1,75 @@
-import { Modal, Pressable, TouchableOpacity, View, Text } from 'react-native'
+import {
+  Modal,
+  TouchableOpacity,
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  Dimensions,
+  Pressable,
+} from 'react-native'
 import Close from '../../../assets/icons/x-regular.svg'
 import Button from '../../Button'
+import InputText from '../../InputText'
+import { useRef, useState } from 'react'
 
 type BottomSheetCreateTransactionProps = {
   showModal: boolean
   onClose: () => void
 }
 
+const SCREEN_HEIGHT_WITH_STATUSBAR = Dimensions.get('screen').height
+
 function BottomSheetCreateTransaction({
   showModal,
   onClose,
 }: BottomSheetCreateTransactionProps) {
+  const marginContent = useRef(0)
+  const [contantHeight, setContentHeight] = useState(0)
   return (
     <Modal
+      onRequestClose={onClose}
       statusBarTranslucent
       visible={showModal}
       animationType="slide"
       transparent={true}
     >
-      <Pressable className="flex-1 bg-[#121214B3] items-end flex-row">
-        <View
-          className="h-[500] w-full bg-base-shapePrincipal rounded-t-[20px] p-6"
-          style={{ gap: 24 }}
+      <KeyboardAvoidingView className="flex-1" behavior="padding">
+        <ScrollView
+          className="flex-1 bg-base-backgroundOpacity"
+          showsVerticalScrollIndicator={false}
         >
-          <View className="w-full justify-between flex-row">
-            <Text className="text-style-bold-xl text-base-titulos">
-              Nova Transação
-            </Text>
-            <TouchableOpacity onPress={onClose}>
-              <Close width={24} height={24} />
-            </TouchableOpacity>
+          <Pressable
+            className="flex-1 items-end flex-row"
+            style={{ height: contantHeight }}
+            onPress={onClose}
+          />
+          <View
+            className="w-full bg-base-shapePrincipal rounded-t-[20px] p-6"
+            style={{ gap: 24 }}
+            onLayout={(l) => {
+              const CONTENT_HEIGHT = l.nativeEvent.layout.height
+              const margin = SCREEN_HEIGHT_WITH_STATUSBAR - CONTENT_HEIGHT
+              marginContent.current = margin
+              setContentHeight(margin)
+            }}
+          >
+            <View className="w-full justify-between flex-row">
+              <Text className="text-style-bold-xl text-base-titulos">
+                Nova Transação
+              </Text>
+              <TouchableOpacity onPress={onClose}>
+                <Close width={24} height={24} />
+              </TouchableOpacity>
+            </View>
+            <InputText placeholder="Descrição" />
+            <InputText placeholder="Preço" />
+            <InputText placeholder="Categoria" />
+            <Button title="Cadastrar" size="medium" />
           </View>
-          <Button title="Cadastrar" size="medium" />
-        </View>
-      </Pressable>
+          {/* </Pressable> */}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Modal>
   )
 }
