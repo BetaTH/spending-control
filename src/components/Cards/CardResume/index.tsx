@@ -9,9 +9,7 @@ type CardResumeProps = {
 function CardResume({ isDeposit }: CardResumeProps) {
   return (
     <View
-      className={`flex-col w-[280] px-8 py-6 bg-base-shapeTerciaria rounded-[6px] space-y-3 ${
-        isDeposit ? 'ml-6' : 'mr-6'
-      }`}
+      className={`flex-col w-[280] px-8 py-6 bg-base-shapeTerciaria rounded-[6px] space-y-3`}
     >
       <View className="w-full flex-row justify-between">
         <Text className="text-base-textoBase text-style-regular-md">
