@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import ArrowUp from '../../../assets/icons/arrow-circle-up-regular.svg'
 import ArrowDown from '../../../assets/icons/arrow-circle-down-regular.svg'
+import { colors } from '../../../theme/theme'
 
 type CardResumeProps = {
   isDeposit: boolean
@@ -11,11 +12,15 @@ function CardResume({ isDeposit }: CardResumeProps) {
     <View
       className={`flex-col w-[280] px-8 py-6 bg-base-shapeTerciaria rounded-[6px] space-y-3`}
     >
-      <View className="w-full flex-row justify-between">
+      <View className="w-full flex-row justify-between items-center">
         <Text className="text-base-textoBase text-style-regular-md">
           {isDeposit ? 'Entrada' : 'Sáida'}
         </Text>
-        {isDeposit ? <ArrowUp /> : <ArrowDown />}
+        {isDeposit ? (
+          <ArrowUp color={colors.produto.green} />
+        ) : (
+          <ArrowDown color={colors.produto.red} />
+        )}
       </View>
       <View className="w-full flex-col space-y-[2]">
         <Text className="text-base-titulos text-style-bold-2xl">

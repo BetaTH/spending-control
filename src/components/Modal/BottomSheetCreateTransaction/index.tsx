@@ -10,8 +10,9 @@ import {
 } from 'react-native'
 import Close from '../../../assets/icons/x-regular.svg'
 import Button from '../../Button'
-import InputText from '../../InputText'
+import InputText from '../../Inputs/InputText'
 import { useRef, useState } from 'react'
+import InputTypeTransaction from '../../Inputs/InputType'
 
 type BottomSheetCreateTransactionProps = {
   showModal: boolean
@@ -65,6 +66,7 @@ function BottomSheetCreateTransaction({
             <InputText placeholder="Descrição" />
             <InputText placeholder="Preço" />
             <InputText placeholder="Categoria" />
+            <InputTypeTransaction />
             <Button title="Cadastrar" size="medium" />
           </View>
           {/* </Pressable> */}
