@@ -13,6 +13,7 @@ import Button from '../../Button'
 import InputText from '../../Inputs/InputText'
 import { useRef, useState } from 'react'
 import InputTypeTransaction from '../../Inputs/InputType'
+import SelectMonthly from '../../SelectMonthly'
 
 type BottomSheetCreateTransactionProps = {
   showModal: boolean
@@ -66,10 +67,11 @@ function BottomSheetCreateTransaction({
             <InputText placeholder="Descrição" />
             <InputText placeholder="Preço" />
             <InputText placeholder="Categoria" />
+            <SelectMonthly />
+            <InputText placeholder="dd/mm/aaaa" />
             <InputTypeTransaction />
             <Button title="Cadastrar" size="large" />
           </View>
-          {/* </Pressable> */}
         </ScrollView>
       </KeyboardAvoidingView>
     </Modal>
