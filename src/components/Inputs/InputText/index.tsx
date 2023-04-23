@@ -7,7 +7,7 @@ type InputTextProps = {
 function InputText({ placeholder, ...props }: InputTextProps) {
   return (
     <TextInput
-      className="w-full rounded-[6px] bg-base-background px-4 py-4 border-transparent text-style-regular-md text-base-white focus:border-produto-greenLight"
+      className="w-full rounded-[6px] bg-base-background px-4 py-3 border-transparent text-style-regular-md text-base-white focus:border-produto-greenLight"
       style={{ borderWidth: 1 }}
       placeholder={placeholder}
       placeholderTextColor="#7C7C8A"
