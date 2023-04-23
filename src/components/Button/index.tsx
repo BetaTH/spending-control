@@ -13,12 +13,12 @@ type ButtonProps = {
 
 function Button({ title, size, iconName, className, ...props }: ButtonProps) {
   const classSize = !size
-    ? 'w-full px-[20px] py-[12px]'
+    ? 'w-full px-5 py-3'
     : size === 'small'
-    ? 'px-[16px] py-[8px]'
+    ? 'px-4 py-2'
     : size === 'medium'
-    ? 'px-[20px] py-[12px]'
-    : 'px-[32px] py-[16px]'
+    ? 'px-5 py-3'
+    : 'px-8 py-4'
 
   return (
     <TouchableOpacity

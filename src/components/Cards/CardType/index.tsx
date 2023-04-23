@@ -26,8 +26,8 @@ function CardTypeTransaction({
 
   const pressableAnimatedStyle = useAnimatedStyle(() => {
     selectedOffset.value = isSelected
-      ? withTiming(1, { duration: 300 })
-      : withTiming(0, { duration: 300 })
+      ? withTiming(1, { duration: 150 })
+      : withTiming(0, { duration: 150 })
     return {
       backgroundColor: interpolateColor(
         selectedOffset.value,
@@ -69,10 +69,14 @@ function CardTypeTransaction({
     >
       {type ? (
         <ArrowDown
+          width={24}
+          height={24}
           color={isSelected ? colors.base.white : colors.produto.red}
         />
       ) : (
         <ArrowUp
+          width={24}
+          height={24}
           color={isSelected ? colors.base.white : colors.produto.green}
         />
       )}
@@ -82,7 +86,7 @@ function CardTypeTransaction({
           color: isSelected ? colors.base.white : colors.base.textoBase,
         }}
       >
-        {type ? 'Sáida' : 'Entrada'}
+        {type ? 'Saída' : 'Entrada'}
       </Text>
     </PressableAnimated>
   )

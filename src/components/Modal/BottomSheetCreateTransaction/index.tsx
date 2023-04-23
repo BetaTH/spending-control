@@ -67,7 +67,7 @@ function BottomSheetCreateTransaction({
             <InputText placeholder="Preço" />
             <InputText placeholder="Categoria" />
             <InputTypeTransaction />
-            <Button title="Cadastrar" size="medium" />
+            <Button title="Cadastrar" size="large" />
           </View>
           {/* </Pressable> */}
         </ScrollView>
