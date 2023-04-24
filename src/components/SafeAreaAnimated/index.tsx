@@ -1,19 +1,16 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  ViewProps,
-  Platform,
-  StatusBar,
-  ViewStyle,
-} from 'react-native'
+import { SafeAreaView, Platform, StatusBar, ViewStyle } from 'react-native'
+import Animated from 'react-native-reanimated'
+
+const SafeAreaAnimated = Animated.createAnimatedComponent(SafeAreaView)
 
 type Props = {
   style?: ViewStyle
-} & ViewProps
+} & React.ComponentProps<typeof SafeAreaAnimated>
 
 function SafeArea({ style, children, ...props }: Props) {
   return (
-    <SafeAreaView
+    <SafeAreaAnimated
       style={[
         style,
         {
@@ -26,7 +23,7 @@ function SafeArea({ style, children, ...props }: Props) {
       {...props}
     >
       {children}
-    </SafeAreaView>
+    </SafeAreaAnimated>
   )
 }
 

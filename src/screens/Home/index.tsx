@@ -1,15 +1,32 @@
-import SafeArea from '../../components/SafeArea'
+import SafeArea from '../../components/SafeAreaAnimated'
 import { ScrollView, View } from 'react-native'
 import CardResume from '../../components/Cards/CardResume'
 import CardTransactions from '../../components/Cards/CardTransactions'
 import Button from '../../components/Button'
 import { useState } from 'react'
-import BottomSheetCreateTransaction from '../../components/Modal/BottomSheetCreateTransaction'
+import ModalCreateTransaction from '../../components/Modal/ModalCreateTransaction'
+import { withTiming } from 'react-native-reanimated'
 
 function Home() {
   const [showModalToAdd, setShowModalToAdd] = useState(false)
+  const existing = (values) => {
+    'worklet'
+    const animations = {
+      opacity: withTiming(0),
+    }
+    const initialValues = {
+      opacity: 1,
+    }
+    return {
+      initialValues,
+      animations,
+    }
+  }
   return (
-    <SafeArea style={{ padding: 0, flex: 1, position: 'relative' }}>
+    <SafeArea
+      exiting={existing}
+      style={{ padding: 0, flex: 1, position: 'relative' }}
+    >
       <View className="flex-1">
         <View className="flex-1">
           <View className="h-[134]" />
@@ -95,10 +112,9 @@ function Home() {
         }}
         onPress={() => setShowModalToAdd(true)}
       />
-      <BottomSheetCreateTransaction
-        showModal={showModalToAdd}
-        onClose={() => setShowModalToAdd(false)}
-      />
+      {showModalToAdd && (
+        <ModalCreateTransaction onClose={() => setShowModalToAdd(false)} />
+      )}
     </SafeArea>
   )
 }
