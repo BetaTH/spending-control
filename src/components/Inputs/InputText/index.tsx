@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { TextInput, TextInputProps, View, Text } from 'react-native'
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
   interpolate,
+  interpolateColor,
 } from 'react-native-reanimated'
+import { colors } from '../../../theme/theme'
 
 type InputTextProps = {
   label: string
@@ -16,6 +19,7 @@ type InputTextProps = {
 } & TextInputProps
 
 const TextAnimated = Animated.createAnimatedComponent(Text)
+const TextInputAnimated = Animated.createAnimatedComponent(TextInput)
 function InputText({
   label,
   placeholder,
@@ -25,6 +29,9 @@ function InputText({
   required,
   ...props
 }: InputTextProps) {
+  const [isFocused, setIsFocused] = useState(false)
+
+  const focusOffset = useSharedValue(0)
   const selectedOffset = useSharedValue(errorMessage ? 1 : 0)
 
   const errorMessageAnimatedStyle = useAnimatedStyle(() => {
@@ -35,6 +42,23 @@ function InputText({
       fontSize: interpolate(selectedOffset.value, [0, 1], [0, 14]),
     }
   }, [errorMessage])
+
+  const inputAnimatedStyle = useAnimatedStyle(() => {
+    console.log(focusOffset.value)
+    focusOffset.value = isFocused
+      ? withTiming(1, { duration: 150 })
+      : withTiming(0, { duration: 150 })
+    return {
+      borderColor: interpolateColor(
+        focusOffset.value,
+        [0, 1],
+        [
+          errorMessage ? colors.produto.redDark : '#00000000',
+          errorMessage ? colors.produto.redDark : colors.produto.greenLight,
+        ],
+      ),
+    }
+  }, [isFocused, errorMessage])
 
   return (
     <View style={{ gap: 4, width, flex: width ? undefined : 1 }}>
@@ -50,11 +74,13 @@ function InputText({
           )}
         </View>
       )}
-      <TextInput
-        className="w-full rounded-[6px] bg-base-background px-4 py-3 border-transparent text-style-regular-md text-base-white focus:border-produto-greenLight"
-        style={{ borderWidth: 1 }}
+      <TextInputAnimated
+        className="w-full rounded-[6px] bg-base-background px-4 py-3 text-style-regular-md text-base-white"
+        style={[{ borderWidth: 1 }, inputAnimatedStyle]}
         placeholder={placeholder}
-        placeholderTextColor="#7C7C8A"
+        placeholderTextColor={colors.base.placeholder}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         {...props}
       />
       {hintText && (
@@ -62,15 +88,12 @@ function InputText({
           {hintText}
         </Text>
       )}
-
-      {errorMessage && (
-        <TextAnimated
-          className="texxt-style-regular-sm text-produto-redDark"
-          style={errorMessageAnimatedStyle}
-        >
-          {errorMessage}
-        </TextAnimated>
-      )}
+      <TextAnimated
+        className="texxt-style-regular-sm text-produto-redDark"
+        style={errorMessageAnimatedStyle}
+      >
+        {errorMessage}
+      </TextAnimated>
     </View>
   )
 }

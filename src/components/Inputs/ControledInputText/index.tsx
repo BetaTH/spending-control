@@ -90,7 +90,7 @@ function ControledInputText<T>({
           inputAnimatedStyle,
         ]}
         placeholder={placeholder}
-        placeholderTextColor="#7C7C8A"
+        placeholderTextColor={colors.base.placeholder}
         value={field?.value as string}
         onChangeText={field?.onChange}
         onFocus={() => setIsFocused(true)}
