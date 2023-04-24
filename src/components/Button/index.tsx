@@ -22,7 +22,7 @@ function Button({ title, size, iconName, className, ...props }: ButtonProps) {
 
   return (
     <TouchableOpacity
-      className={`${classSize} bg-produto-greenLight rounded-[6px] items-center ${className}`}
+      className={`${classSize} bg-produto-green rounded-[6px] items-center ${className}`}
       {...props}
     >
       {title && (

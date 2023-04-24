@@ -18,6 +18,7 @@ const TextAnimated = Animated.createAnimatedComponent(Text)
 function CardSelectMonthly({
   title,
   isSelected,
+  disabled,
   ...props
 }: CardSelectMonthlyProps) {
   const selectedOffset = useSharedValue(isSelected ? 1 : 0)
@@ -29,10 +30,13 @@ function CardSelectMonthly({
       backgroundColor: interpolateColor(
         selectedOffset.value,
         [0, 1],
-        [colors.base.shapeSecundaria, colors.produto.greenLight],
+        [
+          disabled ? colors.base.shapeSecundaria : colors.base.shapeSecundaria,
+          disabled ? colors.produto.greenDark : colors.produto.green,
+        ],
       ),
     }
-  }, [isSelected])
+  }, [isSelected, disabled])
 
   const textAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -45,6 +49,7 @@ function CardSelectMonthly({
   }, [])
   return (
     <PressableAnimated
+      disabled={disabled}
       {...props}
       className="flex-1 p-4 flex-row items-center justify-center rounded-[6px]"
       style={pressableAnimatedStyle}

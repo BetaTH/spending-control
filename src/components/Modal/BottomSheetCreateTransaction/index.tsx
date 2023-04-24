@@ -12,8 +12,8 @@ import Close from '../../../assets/icons/x-regular.svg'
 import Button from '../../Button'
 import InputText from '../../Inputs/InputText'
 import { useRef, useState } from 'react'
-import InputTypeTransaction from '../../Inputs/InputType'
-import SelectMonthly from '../../SelectMonthly'
+import SelectTypeTransaction from '../../Selects/SelectType'
+import SelectMonthly from '../../Selects/SelectMonthly'
 
 type BottomSheetCreateTransactionProps = {
   showModal: boolean
@@ -28,6 +28,7 @@ function BottomSheetCreateTransaction({
 }: BottomSheetCreateTransactionProps) {
   const marginContent = useRef(0)
   const [contantHeight, setContentHeight] = useState(0)
+
   return (
     <Modal
       onRequestClose={onClose}
@@ -64,12 +65,26 @@ function BottomSheetCreateTransaction({
                 <Close width={24} height={24} />
               </TouchableOpacity>
             </View>
-            <InputText placeholder="Descrição" />
-            <InputText placeholder="Preço" />
-            <InputText placeholder="Categoria" />
-            <SelectMonthly />
-            <InputText placeholder="dd/mm/aaaa" />
-            <InputTypeTransaction />
+            <InputText
+              label="Descrição"
+              placeholder="Descrição da transação"
+              required
+            />
+            <View
+              className="flex-row w-full justify-between"
+              style={{ gap: 8 }}
+            >
+              <InputText
+                label="Valor da transação"
+                placeholder="R$ 0,00"
+                required
+              />
+              <InputText label="Vezes" placeholder="1" width={100} />
+            </View>
+            <InputText label="Categoria" placeholder="Categoria" required />
+            <SelectTypeTransaction required />
+            <SelectMonthly disabled={false} required />
+            <InputText label="Data" placeholder="dd/mm/aaaa" />
             <Button title="Cadastrar" size="large" />
           </View>
         </ScrollView>

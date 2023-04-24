@@ -35,7 +35,7 @@ function CardTypeTransaction({
         [0, 1],
         [
           colors.base.shapeSecundaria,
-          type ? colors.produto.redDark : colors.produto.greenDark,
+          type ? colors.produto.redDark : colors.produto.green,
         ],
       ),
     }

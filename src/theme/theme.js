@@ -21,6 +21,11 @@ const colors = {
 
 const typographies = {
   regular: {
+    xs: {
+      fontSize: 12,
+      fontWeight: '400',
+      fontFamily: 'Roboto_400Regular',
+    },
     sm: {
       fontSize: 14,
       fontWeight: '400',
