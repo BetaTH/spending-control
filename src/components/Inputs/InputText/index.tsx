@@ -44,7 +44,6 @@ function InputText({
   }, [errorMessage])
 
   const inputAnimatedStyle = useAnimatedStyle(() => {
-    console.log(focusOffset.value)
     focusOffset.value = isFocused
       ? withTiming(1, { duration: 150 })
       : withTiming(0, { duration: 150 })
